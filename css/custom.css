@@ -1,0 +1,208 @@
+body {
+  padding-top: 50px;
+}
+
+
+/*Styling for panel*/
+
+.panel-transparent .panel-heading{
+        background: rgba(0, 0, 0, 0)!important;
+        border: 0!important;
+        box-shadow: none;
+        font-size: 18px;
+        padding-left: 40px
+    }
+
+.panel-transparent .panel-body{
+    background: rgba(0, 0, 0, 0)!important;
+    border: 0!important;
+    box-shadow: none;
+    font-size: 14px;
+    padding-left: 40px
+}
+
+.panel-transparent{
+    /*padding-left: 20px*/
+}
+
+.panel {
+    border: 0;
+    box-shadow: none;
+    /*font-size: 18px;*/
+}
+
+
+.table > thead > tr > th, .table > thead > tr > td {
+    border: 0;
+}
+
+/*Set width of container*/
+@media (min-width: 1200px) {
+  .container {
+    width: 1000px;
+  }
+}
+
+a {
+	/*color: #2c75b4;*/
+  color: #004785; /*Wharton blue*/
+}
+
+/* Main Area */
+.logo {
+	height:60px;
+}
+
+
+.photo {
+	height: 360px;
+	padding-bottom: 10px;
+}
+
+.photo-small {
+	height: 250px;
+	float: right;
+	margin-left: 20px;
+}
+
+.jumbotron ul {
+	list-style: none;
+	padding-left: 0px;
+	font-size: 16px;
+}
+
+.jumbotron p {
+	font-size: 16px
+}
+
+/*h1.name {
+	margin-top: -10px;
+	font-size: 40px;
+}*/
+
+
+
+.jumbotron h3 {
+	margin-top: 20px;
+}
+
+.jumbotron {
+	padding-top: 40px;
+	padding-bottom: 10px;
+}
+
+.cv {
+	font-size: 16px;
+}
+
+.email {
+	font-size: 16px;
+}
+
+.address {
+	font-size: 16px;
+}
+
+/* Organization */
+
+.anchor {
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
+}
+
+.main_title {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sub_title {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 25px
+}
+
+
+
+/* Papers Area */
+
+.papers{
+	padding-left: 20px
+}
+
+.papers .title {
+	display: inline;
+	padding-left: 20px
+}
+
+/*.papers .after_title {
+  font-size: 14px;
+  padding-left: 80px;
+}*/
+
+.papers .after-title {
+	font-size: 14px;
+  padding-left: 40px;
+}
+
+.papers ul{
+	list-style: none;
+	padding-left: 0px;
+}
+
+.papers .paper-link {
+	font-size: 18px;
+}
+
+.papers .pdf {
+	/*padding-left: 5px;*/
+}
+
+.papers .co-authors {
+	font-size: 15px;
+	/*padding-bottom: 5px;*/
+  padding-left: 40px;
+}
+
+.papers .journal {
+	font-size: 15px;
+	/*padding-bottom: 5px;*/
+  padding-left: 40px;
+}
+
+.papers .abstract {
+  padding-left: 25px;
+	font-size: 13px;
+	text-align: justify;
+}
+
+.paper {
+	/*padding-bottom: 25px;*/
+}
+
+.discussion {
+	padding-bottom: 10px;
+}
+
+
+/* Teaching */
+
+.courses{
+	padding-left: 20px
+}
+
+.courses .title {
+	display: inline;
+	padding-left: 20px
+}
+
+.courses .subtitle {
+	font-size: 15px;
+	/*padding-bottom: 5px;*/
+  padding-left: 40px;
+}
+
+.course {
+	padding-bottom: 10px;
+}

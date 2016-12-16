@@ -7,22 +7,24 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="img/favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Mathieu Taschereau-Dumouchel</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script> -->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -46,22 +48,312 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="#">Contact</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#teaching">Teaching</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+
+    <div style="background:transparent !important" class="jumbotron">
+		<div class="container" >
+			<div class="row">
+				<div class="col-md-1 hidden-sm hidden-xs">
+				</div>
+				<div class="col-md-4 col-sm-6 hidden-xs">
+					<img class="photo" src="img/2671112_orig.png" alt="Photo" title="Photo">
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+                    <img class="logo" src="img/wharton-logo.png" alt="Wharton" title="Wharton School University of Pennsylvania">
+                    <!-- <img class="photo-small visible-xs" src="img/2671112_orig.png" alt="Photo small" title="Photo small"> -->
+					<h2 class="name">Mathieu Taschereau-Dumouchel</h2>
+					<ul>
+						<li>Assistant Professor of Finance</li>
+						<li>The Wharton School</li>
+						<li>University of Pennsylvania</li>
+					</ul>
+					<h3>Research Interests</h3>
+					<p>Macroeconomics, Networks, Labor Economics</p>
+
+
+					<ul>
+						<li><span class="glyphicon glyphicon-user"></span> <a class="cv" target="_blank" href="files/cv.pdf">Curriculum Vitae</a></li>
+						<li><span class="glyphicon glyphicon-envelope"></span> <a class="email" href="mailto:mathieu@wharton.upenn.edu">mathieu@wharton.upenn.edu</a></li>
+            <li><span class="glyphicon glyphicon-globe"></span> 3620 Locust Walk, 2320 SHDH, Philadelphia, PA 19104</li>
+					</ul>
+				</div>
+				<div class="col-md-1 hidden-sm hidden-xs">
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <a class="anchor" id="research"></a>
+
+  <div class="main_title">
+    <div class="container" id="research">
+      <h2>Research</h2>
+    </div>
+  </div>
+  <div class="sub_title">
+    <div class="container">
+      <h3>Working Papers</h3>
+    </div>
+  </div>
+
+		<div class="papers">
+			<div class="container">
+				<div class="paper">
+					<h4 class="title">Aggregate Demand and the Dynamics of Unemployment</h4>
+
+					<ul>
+						<li class="co-authors">with <a  target="_blank" href="http://sites.google.com/site/edouardschaal/">Edouard Schaal</a>, June 2016</li>
+            <li class="after-title">
+              <a data-toggle="collapse" href="#CoordUnemp">(abstract)</a>
+              <a target="_blank" href="files/papers/Coordination and the Dynamics of Unemployment/paper.pdf">(paper)</a>
+              <a target="_blank" href="files/papers/Coordination and the Dynamics of Unemployment/slides.pdf">(slides)</a>
+            </li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+					</ul>
+
+
+          <div class="panel panel-transparent">
+            <div id="CoordUnemp" class="panel-collapse collapse">
+              <div class="panel-body">We introduce an aggregate demand externality into the Mortensen-Pissarides model of equilibrium unemployment. Because firms care about the demand for their products, an increase in unemployment lowers the incentives to post vacancies which further increases unemployment. This positive feedback creates a coordination problem among firms and leads to multiple equilibria. We show, however, that the multiplicity disappears when enough heterogeneity is introduced in the model. In this case, the unique equilibrium still exhibits interesting dynamic properties. In particular, the importance of the aggregate demand channel grows with the size and duration of shocks, and multiple stationary points in the dynamics of unemployment can exist. We calibrate the model to the U.S. economy and show that the mechanism generates additional volatility and persistence in labor market variables, in line with the data. In particular, the model can generate deep, long-lasting unemployment crises.​</div>
+            </div>
+          </div>
+				</div>
+			</div>
+
+
+      <div class="container">
+				<div class="paper">
+					<h4 class="title">Coordinating Business Cycles</h4>
+					<ul>
+						<li class="co-authors">with <a  target="_blank" href="http://sites.google.com/site/edouardschaal/">Edouard Schaal</a>, October 2015</li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+            <li class="after-title">
+              <a data-toggle="collapse" href="#CBC">(abstract)</a>
+              <a target="_blank" href="files/papers/Coordinating Business Cycles/paper.pdf">(paper)</a>
+              <a target="_blank" href="files/papers/Coordinating Business Cycles/slides.pdf">(slides)</a>
+            </li>
+					</ul>
+
+          <div class="panel panel-transparent">
+            <div id="CBC" class="panel-collapse collapse">
+              <div class="panel-body">We develop a quantitative theory of business cycles with coordination failures. Because of demand complementarities, firms seek to coordinate production and multiple equilibria arise. We use a global game approach to discipline equilibrium selection and show that the unique equilibrium exhibits two steady states. Coordination on high production may fail after a large transitory shock, pushing the economy in a quasi-permanent recession. Our calibrated model rationalizes various features of the Great Recession. Government spending, while generally harmful, can increase welfare when the economy is transitioning between steady states. Simple subsidies implement the efficient allocation.</div>
+            </div>
+          </div>
+				</div>
+			</div>
+
+
+      <div class="container">
+				<div class="paper">
+					<h4 class="title">The Union Threat</h4>
+
+					<ul>
+						<li class="co-authors">February 2015</li>
+            <li class="journal">revise and resubmit, <I>Review of Economic Studies</I></li>
+            <li class="after-title">
+              <a data-toggle="collapse" href="#UnionThreat">(abstract)</a>
+              <a target="_blank" href="files/papers/The Union Threat/paper.pdf">(paper)</a>
+            </li>
+					</ul>
+
+          <div class="panel panel-transparent">
+            <div id="UnionThreat" class="panel-collapse collapse">
+              <div class="panel-body">We develop a quantitative theory of business cycles with coordination failures. Because of demand complementarities, firms seek to coordinate production and multiple equilibria arise. We use a global game approach to discipline equilibrium selection and show that the unique equilibrium exhibits two steady states. Coordination on high production may fail after a large transitory shock, pushing the economy in a quasi-permanent recession. Our calibrated model rationalizes various features of the Great Recession. Government spending, while generally harmful, can increase welfare when the economy is transitioning between steady states. Simple subsidies implement the efficient allocation.</div>
+            </div>
+          </div>
+				</div>
+			</div>
+
+
+      <div class="container">
+				<div class="paper">
+					<h4 class="title">Learning to Coordinate Over the Business Cycles</h4>
+					<ul>
+						<li class="co-authors">with <a  target="_blank" href="http://sites.google.com/site/edouardschaal/">Edouard Schaal</a>, June 2014</li>
+            <!-- <li class="journal">Revise and resubmit, <strong>Review of Economic Studies</strong></li> -->
+            <li class="after-title">
+              <a data-toggle="collapse" href="#LearnCoord">(abstract)</a>
+              <a target="_blank" href="files/papers/Lerning to Coordinate/slides.pdf">(slides)</a>
+            </li>
+					</ul>
+
+          <div class="panel panel-transparent">
+            <div id="LearnCoord" class="panel-collapse collapse">
+              <div class="panel-body">We study a class of dynamic global games where agents learn from both exogenous and endogenous sources of information. Because endogenous information sources (quantities, prices) aggregate private information in a non-linear fashion, the amount of information provided in each period varies with the outcome of the coordination game. We show that a particular type of information cascades arise in this context. The more similar are the actions taken by agents, the less informative are endogenous signals. As a result, the economy may display bubble-like behavior with exuberant periods of economic activity followed by brutal crashes; as well as slow recoveries from crises, as agents take time to learn the new fundamentals.</div>
+            </div>
+          </div>
+				</div>
+			</div>
+
+
+
+      <div class="container">
+				<div class="paper">
+					<h4 class="title">Optimal Redistributive Policy in a Labor Market with Search and Endogenous Participation</h4>
+					<ul>
+						<li class="co-authors">with <a  target="_blank" href="http://sites.google.com/site/edouardschaal/">Edouard Schaal</a></li>
+            <!-- <li class="journal">Revise and resubmit, <strong>Review of Economic Studies</strong></li> -->
+            <li class="after-title">
+              <a data-toggle="collapse" href="#collapse_OptimUnemp">(abstract)</a>
+              <a target="_blank" href="files/papers/Labor tax/paper.pdf">(paper)</a>
+            </li>
+					</ul>
+
+          <div class="panel panel-transparent">
+            <div id="collapse_OptimUnemp" class="panel-collapse collapse">
+              <div class="panel-body">We study optimal redistributive policies in a frictional model of the labor market. Ex-ante heterogeneous agents choose how much to search in a labor market characterized by a matching technology. We first derive efficiency results and provide policies to decentralize the optimal allocation. We then solve the mechanism design problem of a government with redistributive motives and limited information about agents. A large emphasis is put on the general equilibrium effects of policies on wages and job creation. We show that the optimal policy can be implemented by a non-linear income tax on workers along with an unemployment insurance program. We calibrate our model to the US economy and characterize the welfare gains from the optimal policy and its effects on output, search, wages and unemployment distribution. Our findings suggest that optimal policies often feature a generous unemployment insurance along a negative income tax that efficiently raises the participation and employment of low-income earners.</div>
+            </div>
+          </div>
+				</div>
+			</div>
+    </div>
+
+
+
+    <div class="sub_title">
+      <div class="container">
+        <h3>Publications</h3>
+      </div>
+    </div>
+
+		<div class="papers">
+
+      <div class="container">
+				<div class="paper">
+					<h4 class="title">Uncertainty Traps</h4>
+
+					<ul>
+						<li class="co-authors">with <a  target="_blank" href="http://www.econ.ucla.edu/pfajgelbaum/">Pablo Fajgelbaum</a> and <a  target="_blank" href="http://sites.google.com/site/edouardschaal/">Edouard Schaal</a>, May 2016</li>
+            <li class="journal">accepted for publication, <I>Quarterly Journal of Economics</I></li>
+            <li class="after-title">
+              <a data-toggle="collapse" href="#collapse_UT">(abstract)</a>
+              <a target="_blank" href="files/papers/Uncertainty Traps/paper.pdf">(paper)</a>
+              <a target="_blank" href="files/papers/Uncertainty Traps/slides.pdf">(slides)</a>
+              <a target="_blank" href="http://quant-econ.net/jl/uncertainty_traps.html">(exercise at quant econ)</a>
+            </li>
+					</ul>
+
+          <div class="panel panel-transparent">
+            <div id="collapse_UT" class="panel-collapse collapse">
+              <div class="panel-body">We develop a theory of endogenous uncertainty and business cycles in which short-lived shocks can generate long-lasting recessions. In the model, higher uncertainty about fundamentals discourages investment. Since agents learn from the actions of others, information flows slowly in times of low activity and uncertainty remains high, further discouraging investment. The economy displays uncertainty traps: self-reinforcing episodes of high uncertainty and low activity. While the economy recovers quickly after small shocks, large temporary shocks may have long-lasting effects on the level of activity. The economy is subject to an information externality but uncertainty traps may remain in the efficient allocation. Embedding the mechanism in a standard business cycle framework, we find that endogenous uncertainty increases the persistence of large recessions and improves the performance of the model in accounting for the Great Recession.</div>
+            </div>
+          </div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+    <div class="sub_title">
+      <div class="container">
+        <h3>Discussions</h3>
+      </div>
+    </div>
+
+    <div class="papers">
+
+      <div class="container">
+        <div class="discussion">
+          <h4 class="title">Discount Rates and Employment Fluctuations</h4>
+          <ul>
+            <li class="co-authors">by Jaroslav Borovicka and Katarina Borovickova, June 2016, <a target="_blank" href="files/discussions/2016_06_Borovicka_Borovickova.pdf">(slides)</a></li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+          </ul>
+        </div>
       </div>
 
-    </div><!-- /.container -->
+      <div class="container">
+        <div class="discussion">
+          <h4 class="title">A Model of the Reserve Asset</h4>
+          <ul>
+            <li class="co-authors">by Zhiguo He, Arvind Krishnamurthy and Konstantin Milbradt, January 2016, <a target="_blank" href="files/discussions/2016_01_He_Krishnamurthy_Milbradt.pdf">(slides)</a></li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="discussion">
+          <h4 class="title">Uncertainty, Wages, and the Business Cycle</h4>
+          <ul>
+            <li class="co-authors">by Matteo Cacciatore and Federico Ravenna, November 2015, <a target="_blank" href="files/discussions/2015_11_CacciatoreRavenna.pdf">(slides)</a></li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="discussion">
+          <h4 class="title">Who Do Unions Target? Unionization Over the Life-Cycle of U.S. Businesses</h4>
+          <ul>
+            <li class="co-authors">by Emin Dinlersoz, Jeremy Greenwood and Henry Hyatt, January 2015, <a target="_blank" href="files/discussions/2015_01_DinlersozGreenwoodHyatt.pdf">(slides)</a></li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="discussion">
+          <h4 class="title">Default Risk and Aggregate Fluctuations in an Economy with Production Heterogeneity</h4>
+          <ul>
+            <li class="co-authors">by Aubhik Khan, Tatsuro Senga and Julia K. Thomas, June 2014, <a target="_blank" href="files/discussions/2014_06_KhanSengaThomas.pdf">(slides)</a></li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="title">
+        <div class="container" id="teaching">
+          <h2>Teaching</h2>
+        </div>
+      </div>
+
+      <div class="courses">
+
+      <div class="container">
+    		<div class="course">
+    			<h4 class="title"> FNCE 613 - Macroeconomics and the Global Economic Environment</h4>
+          <ul>
+            <li class="subtitle">Wharton MBA, Spring 2016 and 2017</li>
+          </ul>
+  			</div>
+      </div>
+
+      <div class="container">
+    		<div class="course">
+    			<h4 class="title"> FNCE 924 - Macroeconomics</h4>
+          <ul>
+            <li class="subtitle">Wharton PhD, Spring 2012, 2013 and 2014</li>
+          </ul>
+  			</div>
+      </div>
+
+      <div class="container">
+    		<div class="course">
+    			<h4 class="title"> FNCE 101 - Monetary Economics and the Global Economy</h4>
+          <ul>
+            <li class="subtitle">Wharton Undergraduates, Spring 2013 and 2014</li>
+            <!-- <li class="journal">Resubmitted to <strong>Journal of Finance</strong></li> -->
+          </ul>
+  			</div>
+      </div>
+		</div>
+    </div>
+
+  </div>
+
+
+
 
 
     <!-- Bootstrap core JavaScript
@@ -69,8 +361,8 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
