@@ -125,7 +125,7 @@ a {
 .sub_title {
   padding-top: 0px;
   padding-bottom: 10px;
-  padding-left: 25px
+  /*padding-left: 25px*/
 }
 
 
@@ -133,7 +133,7 @@ a {
 /* Papers Area */
 
 .papers{
-	padding-left: 20px
+	padding-left: 10px
 }
 
 .title {
@@ -178,7 +178,7 @@ a {
 /* Teaching */
 
 .courses{
-	padding-left: 20px
+	padding-left: 10px
 }
 
 .courses ul{
