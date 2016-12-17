@@ -10,26 +10,7 @@ body {
 }
 
 
-@media(max-width: 500px) {
-  h1 {
-    font-size: 14pt;
-  }
-  h2 {
-    font-size: 14pt;
-  }
-  h3 {
-    font-size: 12pt;
-  }
-  h4 {
-    font-size: 12pt;
-  }
-  body {
-    font-size: 12pt;
-  }
-  p {
-    font-size: 12pt!important;
-  }
-}
+
 
 
 /*Styling for panel*/
@@ -155,13 +136,14 @@ a {
 	padding-left: 20px
 }
 
-.papers .title {
-	display: inline;
+.title {
+	display: inline-block;
+  margin: 0px;
 	padding-left: 20px
 }
 
 
-.papers .after-title {
+.after-title {
 	font-size: 15px;
   padding-left: 40px;
 }
@@ -169,14 +151,6 @@ a {
 .papers ul{
 	list-style: none;
 	padding-left: 0px;
-}
-
-.papers .paper-link {
-	font-size: 18px;
-}
-
-.papers .pdf {
-	/*padding-left: 5px;*/
 }
 
 .papers .co-authors {
@@ -207,10 +181,15 @@ a {
 	padding-left: 20px
 }
 
-.courses .title {
+.courses ul{
+	list-style: none;
+	padding-left: 0px;
+}
+
+/*.courses .title {
 	display: inline;
 	padding-left: 20px
-}
+}*/
 
 .courses .subtitle {
 	font-size: 15px;
@@ -220,4 +199,95 @@ a {
 
 .course {
 	padding-bottom: 10px;
+}
+
+
+
+
+
+@media(max-width: 480px) {
+  h1 {
+    font-size: 16pt;
+  }
+  h2 {
+    font-size: 16pt;
+  }
+  h3 {
+    font-size: 14pt;
+  }
+  h4 {
+    font-size: 12pt;
+  }
+  body {
+    font-size: 12pt;
+  }
+  p {
+    font-size: 12pt!important;
+  }
+
+  .main_title {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .sub_title {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px
+  }
+
+  .papers{
+  	padding-left: 0px
+  }
+
+  .title {
+  	display: inline-block;
+    margin: 0px;
+  	padding-left: 0px
+  }
+
+
+  .after-title {
+    padding-left: 20px;
+  }
+
+  .papers ul{
+  	list-style: none;
+  	padding-left: 0px;
+  }
+
+  .papers .co-authors {
+  	/*padding-bottom: 5px;*/
+    padding-left: 20px;
+  }
+
+  .papers .journal {
+  	/*padding-bottom: 5px;*/
+    padding-left: 20px;
+  }
+
+
+
+
+
+  .courses{
+  	padding-left: 0px
+  }
+
+  .courses ul{
+  	list-style: none;
+  	padding-left: 0px;
+  }
+
+  /*.courses .title {
+  	display: inline;
+  	padding-left: 20px
+  }*/
+
+  .courses .subtitle {
+  	font-size: 15px;
+  	/*padding-bottom: 5px;*/
+    padding-left: 20px;
+  }
+
 }
