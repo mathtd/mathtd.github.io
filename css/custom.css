@@ -2,6 +2,35 @@ body {
   padding-top: 50px;
 }
 
+/*Set width of container*/
+@media (min-width: 1200px) {
+  .container {
+    width: 1000px;
+  }
+}
+
+
+@media(max-width: 500px) {
+  h1 {
+    font-size: 14pt;
+  }
+  h2 {
+    font-size: 14pt;
+  }
+  h3 {
+    font-size: 12pt;
+  }
+  h4 {
+    font-size: 12pt;
+  }
+  body {
+    font-size: 12pt;
+  }
+  p {
+    font-size: 12pt!important;
+  }
+}
+
 
 /*Styling for panel*/
 
@@ -9,15 +38,16 @@ body {
         background: rgba(0, 0, 0, 0)!important;
         border: 0!important;
         box-shadow: none;
-        font-size: 18px;
+        /*font-size: 18px;*/
         padding-left: 40px
     }
+
 
 .panel-transparent .panel-body{
     background: rgba(0, 0, 0, 0)!important;
     border: 0!important;
     box-shadow: none;
-    font-size: 14px;
+    /*font-size: 14px;*/
     padding-left: 40px
 }
 
@@ -36,12 +66,6 @@ body {
     border: 0;
 }
 
-/*Set width of container*/
-@media (min-width: 1200px) {
-  .container {
-    width: 1000px;
-  }
-}
 
 a {
 	color: #2c75b4;
@@ -71,9 +95,9 @@ a {
 	font-size: 16px;
 }
 
-.jumbotron p {
-	font-size: 16px
-}
+/*.jumbotron p {*/
+	/*font-size: 16px*/
+/*}*/
 
 /*h1.name {
 	margin-top: -10px;
@@ -136,13 +160,9 @@ a {
 	padding-left: 20px
 }
 
-/*.papers .after_title {
-  font-size: 14px;
-  padding-left: 80px;
-}*/
 
 .papers .after-title {
-	font-size: 14px;
+	font-size: 15px;
   padding-left: 40px;
 }
 
@@ -171,11 +191,6 @@ a {
   padding-left: 40px;
 }
 
-.papers .abstract {
-  padding-left: 25px;
-	font-size: 13px;
-	text-align: justify;
-}
 
 .paper {
 	/*padding-bottom: 25px;*/
