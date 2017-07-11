@@ -55,7 +55,9 @@ a {
 
 /* Main Area */
 .logo {
-	height:60px;
+	height: 114px;
+    max-width: 100%;
+
 }
 
 
@@ -198,6 +200,10 @@ a {
 
 
 @media(max-width: 480px) {
+
+
+
+
   h1 {
     font-size: 16pt;
   }
@@ -216,6 +222,7 @@ a {
   p {
     font-size: 12pt!important;
   }
+
 
   .main_title {
     padding-top: 0px;
