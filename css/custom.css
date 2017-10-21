@@ -1,5 +1,9 @@
 body {
-  padding-top: 50px;
+  /*padding-top: 50px;*/
+
+   padding-top:0px;
+   margin-top: 25px;
+
 }
 
 /*Set width of container*/
@@ -10,8 +14,17 @@ body {
 }
 
 
+.container {
+    padding-top: 0px;
+  	padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
 
+.row {
+    padding-top: 20px;
+}
 
 /*Styling for panel*/
 
@@ -54,6 +67,8 @@ a {
   /*color: #004785; /*Wharton blue*/*/
 }
 
+a:hover {color: #222222;}
+
 /* Main Area */
 .logo {
 	height: 114px;
@@ -82,12 +97,16 @@ a {
 
 
 .jumbotron h3 {
-	margin-top: 20px;
+	margin-top: 0px;
 }
 
 .jumbotron {
-	padding-top: 40px;
-	padding-bottom: 10px;
+	padding-top: 20px;
+	padding-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .cv {
@@ -112,8 +131,8 @@ a {
 }
 
 .main_title {
-  padding-top: 5px;
-  padding-bottom: 0px;
+  /*padding-top: 5px;*/
+  padding-bottom: 5px;
 }
 
 .sub_title {
@@ -165,7 +184,7 @@ a {
 }
 
 .discussion {
-	/*padding-bottom: 10px;*/
+	padding-bottom: 10px;
 }
 
 
