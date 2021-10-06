@@ -77,13 +77,17 @@ a:hover {color: #222222;}
 
 
 .photo {
-	height: 360px;
-	padding-bottom: 10px;
+	/* height: 360px;
+	padding-bottom: 10px; */
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .photo-small {
 	height: 250px;
-	float: right;
+	/* float: right; */
+  float: center;
 	margin-left: 20px;
 }
 
