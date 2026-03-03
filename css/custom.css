@@ -87,7 +87,7 @@ a:hover {color: #222222;}
 .photo-small {
 	height: 250px;
 	/* float: right; */
-  float: center;
+  margin: auto;
 	margin-left: 20px;
 }
 
