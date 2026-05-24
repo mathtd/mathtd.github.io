@@ -308,6 +308,15 @@ function initAudio() {
   musicGain  = AC.createGain(); musicGain.gain.value = 0.30; musicGain.connect(masterGain);
   sfxGain    = AC.createGain(); sfxGain.gain.value = 0.55; sfxGain.connect(masterGain);
   audioReady = true;
+  unlockAudio();                         // iOS: wake the context the moment we make it
+}
+function unlockAudio() {
+  if (!AC) return;
+  if (AC.state === 'suspended') AC.resume();
+  try {                                  // a 1-sample silent blip is what iOS needs to truly unlock output
+    const b = AC.createBuffer(1, 1, 22050);
+    const s = AC.createBufferSource(); s.buffer = b; s.connect(AC.destination); s.start(0);
+  } catch (e) {}
 }
 function midiToFreq(m) { return 440 * Math.pow(2, (m - 69) / 12); }
 
@@ -2348,6 +2357,12 @@ function drawTitle() {
     ctx.strokeStyle = '#0d1230'; ctx.strokeText('Best: ' + bestScore, W/2, H*0.41);
     ctx.fillStyle = '#ffe87a'; ctx.fillText('Best: ' + bestScore, W/2, H*0.41);
   }
+  if (playCount != null) {
+    const txt = '🎮 ' + playCount.toLocaleString() + ' games played';
+    ctx.font = 'bold 15px "Trebuchet MS", sans-serif'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    ctx.strokeStyle = '#0d1230'; ctx.strokeText(txt, W/2, H*0.445);
+    ctx.fillStyle = '#cfe3ff'; ctx.fillText(txt, W/2, H*0.445);
+  }
 }
 
 function star(cx, cy, spikes, outer, inner) {
@@ -2460,6 +2475,30 @@ async function submitScore(name, sc) {
     return r.ok;
   } catch (e) { return false; }
 }
+let playCount = null;
+async function fetchPlayCount() {
+  if (!hofOnline()) return;
+  try {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/plays?select=id`, {
+      method: 'HEAD',
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY, Prefer: 'count=exact' }
+    });
+    const cr = r.headers.get('content-range');   // e.g. "*/1234"
+    if (cr && cr.includes('/')) { const n = parseInt(cr.split('/')[1], 10); if (!isNaN(n)) playCount = n; }
+  } catch (e) {}
+}
+async function bumpPlayCount() {
+  if (playCount != null) playCount++;            // update the on-screen number right away
+  if (!hofOnline()) return;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/plays`, {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY,
+                 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: '{}'
+    });
+  } catch (e) {}
+}
 
 function gameOver() {
   running = false; fireBtn.style.display = 'none';
@@ -2492,13 +2531,14 @@ async function showHallOfFame(from, msg) {
   ovBtn.textContent = (from === 'over') ? 'PLAY AGAIN' : 'PLAY';
   hofBtn.style.display = 'inline-block'; hofBtn.textContent = (from === 'over') ? 'BACK' : 'CLOSE';
   overlay.style.display = 'flex';
-  const scores = await fetchTopScores();
+  const [scores] = await Promise.all([fetchTopScores(), fetchPlayCount()]);
   if (scores === null) { hofNote.textContent = hofOnline() ? 'Could not load scores — check your connection.' : 'Online scores aren\'t set up yet.'; return; }
   if (scores.length === 0) { hofNote.textContent = 'No scores yet — be the first!'; return; }
   hofNote.style.display = msg ? 'block' : 'none'; if (msg) hofNote.textContent = msg;
   hofList.innerHTML = scores.map((s, i) =>
     `<li><span class="rank">${i+1}.</span><span class="nm">${escapeHtml(s.name)}</span><span class="sc">${s.score}</span></li>`).join('');
   hofList.style.display = 'block';
+  if (playCount != null) { hofNote.style.display = 'block'; hofNote.textContent = '🎮 ' + playCount.toLocaleString() + ' games played'; }
 }
 
 function startGame() {
@@ -2508,6 +2548,7 @@ function startGame() {
   creditEl.style.display = 'none';
   hofTitleBtn.style.display = 'none';
   reset();                       // pickTheme() also sets the theme music track
+  bumpPlayCount();               // tally this game
   initAudio(); applyMute();
   startMusic();
 }
@@ -2556,13 +2597,15 @@ function advanceMenu() {
 }
 bigBtn.addEventListener('click', e => { e.stopPropagation(); advanceMenu(); });
 
-// unlock audio + start the jingle on the very first interaction anywhere
-function firstGesture() {
-  initAudio(); applyMute();
+// unlock audio + start the jingle on the first interactions; keep trying until iOS wakes up
+function audioKick() {
+  initAudio(); unlockAudio(); applyMute();
   if ((mode === 'title' || mode === 'howto') && audioReady && !musicOn) { currentMusic = TITLE_MUSIC; startMusic(); }
+  if (AC && AC.state === 'running') {
+    ['touchend','pointerdown','mousedown','keydown'].forEach(ev => removeEventListener(ev, audioKick, true));
+  }
 }
-addEventListener('pointerdown', firstGesture, { once:true });
-addEventListener('keydown', firstGesture, { once:true });
+['touchend','pointerdown','mousedown','keydown'].forEach(ev => addEventListener(ev, audioKick, true));
 
 // ---- boot to the title screen ----
 mode = 'title'; running = false; player = { lane:0 };
@@ -2570,6 +2613,7 @@ bigBtn.textContent = 'PLAY'; bigBtn.style.display = 'block';
 creditEl.style.display = 'block';
 if (hofOnline()) hofTitleBtn.style.display = 'flex';
 overlay.style.display = 'none';
+fetchPlayCount();
 requestAnimationFrame(loop);
 </script>
 </body>
