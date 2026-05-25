@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#FFF7EF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Nino">
+  <meta name="description" content="A gentle audio-first picture game for learning French and English vocabulary.">
+
+  <title>Nino — les mots · the words</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+
+  <!-- Self-hosted rounded font (works offline; no runtime third-party fetch) -->
+  <link rel="preload" href="assets/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- ===================== HOME ===================== -->
+    <section data-screen="home" class="screen screen--home">
+      <div class="mascot-stage mascot-stage--lg" data-mascot></div>
+      <div class="speech" data-speech>Salut&nbsp;! · Hi! 👋</div>
+
+      <div class="lang-picker">
+        <button class="lang-btn lang-btn--fr" data-lang="fr" type="button">
+          <span class="lang-btn__flag"><img src="assets/flags/quebec.svg" alt="" class="flag"><img src="assets/flags/france.svg" alt="" class="flag"></span>
+          <span class="lang-btn__text">J’apprends le français</span>
+        </button>
+        <button class="lang-btn lang-btn--en" data-lang="en" type="button">
+          <span class="lang-btn__flag"><img src="assets/flags/uk.svg" alt="" class="flag"><img src="assets/flags/usa.svg" alt="" class="flag"></span>
+          <span class="lang-btn__text">I’m learning English</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== LEVEL PICKER ===================== -->
+    <section data-screen="level" class="screen screen--level" hidden>
+      <button class="icon-btn back-btn" data-nav="home" type="button" aria-label="Retour">←</button>
+      <div class="mascot-stage mascot-stage--sm" data-mascot></div>
+      <h1 class="screen-title" data-title>Choisis ton niveau</h1>
+      <div class="level-list" data-level-list><!-- buttons injected from LEVELS --></div>
+    </section>
+
+    <!-- ===================== PLAY (round engine — Step 4) ===================== -->
+    <section data-screen="play" class="screen screen--play" hidden>
+      <button class="icon-btn back-btn" data-nav="home" type="button" aria-label="Retour">←</button>
+      <div class="progress" data-progress></div>
+      <div class="play-top">
+        <button class="speaker-btn" data-replay type="button" aria-label="Réécouter">🔊</button>
+      </div>
+      <div class="cards" data-cards><!-- cards injected per round --></div>
+      <div class="speech" data-speech></div>
+      <div class="mascot-stage mascot-stage--sm" data-mascot></div>
+    </section>
+
+    <!-- ===================== REWARD (Step 5) ===================== -->
+    <section data-screen="reward" class="screen screen--reward" hidden>
+      <div class="stars" data-stars></div>
+      <div class="mascot-stage mascot-stage--lg" data-mascot></div>
+      <div class="speech" data-speech-reward>Bravo&nbsp;!</div>
+      <div class="reward-actions">
+        <button class="btn btn--primary" data-action="again" type="button">Encore&nbsp;!</button>
+        <button class="btn btn--ghost" data-nav="home" type="button">Maison</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="attribution">Emoji par <a href="https://openmoji.org" target="_blank" rel="noopener">OpenMoji</a> — CC&nbsp;BY-SA&nbsp;4.0</footer>
+
+  <script defer src="app.js"></script>
+</body>
+</html>

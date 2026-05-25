@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p assets/openmoji assets/audio/fr assets/audio/en assets/fonts scripts)",
+      "Bash(touch assets/openmoji/.gitkeep assets/audio/fr/.gitkeep assets/audio/en/.gitkeep)",
+      "Bash(curl -sL 'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap' -H 'User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36' -o assets/fonts/fredoka.google.css)",
+      "Bash(command -v python3 node ffmpeg)",
+      "Bash(curl -sL 'https://fonts.gstatic.com/s/fredoka/v17/X7n64b87HvSqjb_WIi2yDCRwoQ_k7367_DWu89XgHPyh.woff2' -H 'User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/124.0.0.0 Safari/537.36' -o assets/fonts/fredoka-latin.woff2)",
+      "Bash(rm -f assets/fonts/fredoka.google.css)",
+      "Bash(echo \"--- exit: $? \\(1 = no matches = good\\) ---\")",
+      "Bash(touch .nojekyll)",
+      "Bash(curl -s -o /dev/null -w '  __TRACKED_VAR__ %{http_code}\\\\n' http://localhost:8000/__TRACKED_VAR__)",
+      "Bash(curl -s http://localhost:8000/app.js)",
+      "Bash(curl -s http://localhost:8000/style.css)"
+    ]
+  }
+}
