@@ -39,7 +39,9 @@
   --pad: clamp(16px, 4vw, 28px);
   --gap: clamp(14px, 3.2vw, 22px);
 
-  --font: 'Fredoka', 'Baloo 2', 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Fredoka is Latin-only; kana/kanji fall through to a rounded system JP font */
+  --font: 'Fredoka', 'Baloo 2', 'Quicksand', system-ui, -apple-system, 'Segoe UI',
+          'Hiragino Maru Gothic ProN', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Noto Sans JP', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -234,6 +236,7 @@ button {
 .flag { width: 2.1rem; height: 1.4rem; object-fit: cover; display: block; border-radius: 3px; box-shadow: 0 1px 2px rgba(75, 67, 87, .3); }
 .lang-btn--fr { background: var(--blue-soft); box-shadow: 0 var(--lift) 0 #a9dcf0, var(--shadow-soft); }
 .lang-btn--en { background: var(--pink-soft); box-shadow: 0 var(--lift) 0 #f5b9c7, var(--shadow-soft); }
+.lang-btn--ja { background: var(--lilac-soft); box-shadow: 0 var(--lift) 0 #cbb8ee, var(--shadow-soft); }
 .lang-btn:active { transform: translateY(calc(var(--lift) - 2px)); box-shadow: 0 2px 0 rgba(0,0,0,.12); }
 
 /* --- level picker --- */

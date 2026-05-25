@@ -1,8 +1,8 @@
 'use strict';
 /* =====================================================================
-   Nino — Kids' Bilingual Vocabulary Game
-   Single-file vanilla JS. No build step. Architected for TWO languages
-   from day one; v1 exercises French only.
+   Nino — Kids' Vocabulary Game
+   Single-file vanilla JS. No build step. Concept-centric data model with
+   any number of languages hanging off each word; currently fr / en / ja.
    ===================================================================== */
 (function () {
 
@@ -20,9 +20,9 @@
   // Level 3 (4 cards, same-category distractors, text on) in v2 is one entry.
   //   distractors: 'cross' = different categories | 'mixed' | 'same'
   const LEVELS = [
-    { id: 1, cards: 2, distractors: 'cross', text: false, emoji: '🌱', label: { fr: 'Découverte', en: 'Discover' } },
-    { id: 2, cards: 3, distractors: 'mixed', text: false, emoji: '🌿', label: { fr: 'En route',   en: 'Off we go' } },
-    // { id: 3, cards: 4, distractors: 'same', text: true, emoji: '🌳', label: { fr: 'Les mots', en: 'Words' } },  // v2
+    { id: 1, cards: 2, distractors: 'cross', text: false, emoji: '🌱', label: { fr: 'Découverte', en: 'Discover', ja: 'はっけん' } },
+    { id: 2, cards: 3, distractors: 'mixed', text: false, emoji: '🌿', label: { fr: 'En route',   en: 'Off we go', ja: 'しゅっぱつ' } },
+    // { id: 3, cards: 4, distractors: 'same', text: true, emoji: '🌳', label: { fr: 'Les mots', en: 'Words', ja: 'ことば' } },  // v2
   ];
 
   // UI/mascot strings render in the TARGET language (immersion).
@@ -41,13 +41,20 @@
       encourage: ['Try again!', 'Almost!', 'Keep going!'],
       reward:    'You did it!',
     },
+    ja: {
+      greet: 'こんにちは！あそぼう！',
+      pickLevel: 'レベルをえらんでね',
+      praise:    ['すごい！', 'やったね！', 'いいね！', 'じょうず！'],
+      encourage: ['もういちど！', 'おしい！', 'がんばって！'],
+      reward:    'やったね！',
+    },
   };
 
   // ------------------------------------------------------------------
   // State
   // ------------------------------------------------------------------
   const state = {
-    targetLang: null,   // 'fr' | 'en'
+    targetLang: null,   // 'fr' | 'en' | 'ja'
     level: null,        // LEVELS entry
   };
 
@@ -562,13 +569,16 @@
     try { if ('speechSynthesis' in window) { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } } catch {}
   }
 
+  // voice langs are BCP-47 ('fr-FR', 'en-US', 'ja-JP') — match on the 2-letter prefix
   const pickVoice = (lang) =>
-    voices.find((v) => v.lang && v.lang.toLowerCase().startsWith(lang === 'fr' ? 'fr' : 'en')) || null;
+    voices.find((v) => v.lang && v.lang.toLowerCase().startsWith(lang)) || null;
+
+  const BCP47 = { fr: 'fr-FR', en: 'en-US', ja: 'ja-JP' };
 
   function speakWord(item) {
     if (!('speechSynthesis' in window)) return;
     const u = new SpeechSynthesisUtterance(phraseFor(item, state.targetLang));
-    u.lang = state.targetLang === 'fr' ? 'fr-FR' : 'en-US';
+    u.lang = BCP47[state.targetLang] || 'en-US';
     u.rate = 0.92;
     const v = pickVoice(state.targetLang);
     if (v) u.voice = v;

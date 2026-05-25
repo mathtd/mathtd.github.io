@@ -1,19 +1,20 @@
-# Nino — Kids' Bilingual Vocabulary Game 🇫🇷 🇬🇧
+# Nino — Kids' Multilingual Vocabulary Game 🇫🇷 🇬🇧 🇯🇵
 
 A small, delightful, **static** website that teaches a young child vocabulary by
 **audio-first picture matching**: Nino the mascot says a word, the child taps the
-matching picture. Two modes — learning **French** and learning **English** — share
-one concept-centric word list. No backend, no accounts, no build step.
+matching picture. Three modes — learning **French**, **English**, and **Japanese** —
+share one concept-centric word list. No backend, no accounts, no build step.
 
 - **Audio-first:** every round plays the word in a clear, native voice.
 - **Never punishing:** wrong taps get a gentle nudge from Nino; there's no way to lose.
 - **Spaced repetition:** a 3-box Leitner system surfaces the words a child needs most.
-- **Two languages, one data model:** each word is a language-neutral concept with a
-  shared picture, so flipping French ↔ English is a single switch (progress is kept
+- **Immersion:** menus and Nino's encouragements render in the target language.
+- **Many languages, one data model:** each word is a language-neutral concept with a
+  shared picture, so switching language is a single tap (progress is kept
   separately per language).
 
-> Status: v1 — French **and** English, Levels 1–2, 60 words with full audio in both
-> languages. (Level 3 is a future addition.)
+> Status: v1 — French, English **and** Japanese, Levels 1–2, 100 words with full audio
+> in all three languages. (Level 3 is a future addition.)
 
 ## Run it locally
 
@@ -34,13 +35,16 @@ Add `?dev` to the URL for a panel that triggers Nino's states. In the console,
    ```json
    { "id": "fox", "category": "animals", "codepoint": "1F98A",
      "fr": { "word": "renard", "article": "le", "gender": "m" },
-     "en": { "word": "fox", "article": "the" } }
+     "en": { "word": "fox", "article": "the" },
+     "ja": { "word": "きつね", "romaji": "kitsune" } }
    ```
    - `id` — a unique slug (also the audio filename). `category` — an existing category.
    - `codepoint` — the emoji's Unicode code point in **UPPERCASE** hex (e.g. 🦊 → `1F98A`).
      Find it on [openmoji.org](https://openmoji.org) (the SVG's filename *is* the codepoint)
      or Emojipedia. Multi-codepoint emoji use hyphens, e.g. `1F468-200D-1F33E`.
    - `article` — `le` / `la` / `l'`; include `gender` (`m`/`f`) for French.
+   - `ja.word` — kana (hiragana for native words, katakana for loanwords; no kanji, so the
+     voice reads it unambiguously). `romaji` is a reading aid; nothing displays it yet.
 2. **Get the picture:** `python3 scripts/fetch_images.py`
 3. **Get the audio:** `python3 scripts/generate_audio.py fox` (see below)
 
@@ -61,7 +65,8 @@ python3 scripts/fetch_images.py
 ### Audio — `scripts/generate_audio.py`
 Generates one MP3 per word using **Google Gemini TTS** and converts it with **ffmpeg**.
 French clips say the word **with its article** ("le chien", "l'œuf") so gender is taught
-aloud even when no text is shown.
+aloud even when no text is shown. English and Japanese say the bare word; Japanese reads
+the kana in `ja.word`.
 
 **Requirements:**
 - `export GEMINI_API_KEY=...` — a [Google AI Studio](https://aistudio.google.com/apikey) key.
@@ -74,13 +79,14 @@ python3 scripts/generate_audio.py dog cat    # just these ids (audition before a
 python3 scripts/generate_audio.py --force    # regenerate everything
 python3 scripts/generate_audio.py --voice Leda   # try another voice
 python3 scripts/generate_audio.py --lang en  # English clips
+python3 scripts/generate_audio.py --lang ja  # Japanese clips (reads the kana)
 ```
 
 - **Voice:** default `Sulafat` (warm). Alternatives: `Achird`, `Vindemiatrix`, `Leda`, `Aoede`, `Kore`.
 - **Model:** `gemini-3.1-flash-tts-preview`, auto-falling back to `gemini-2.5-flash-preview-tts`.
 - **Rate limits:** the free tier allows only ~3 requests/minute, so the script waits and
   retries automatically (a full run is slow and may hit a daily cap). A billing-enabled key
-  generates all 60 in seconds for a few cents.
+  generates all 100 in seconds for a few cents.
 - Output: `assets/audio/<lang>/<id>.mp3`. Missing files fall back to the browser's speech voice.
 
 ## Deploy to GitHub Pages
@@ -125,7 +131,8 @@ style.css         pastel design system
 app.js            game logic (mascot, round engine, SRS, audio)
 vocab.json        the word list (the one file you edit to add words)
 assets/openmoji/  downloaded SVGs        assets/fonts/  self-hosted Fredoka
-assets/audio/fr/  generated MP3s         assets/audio/en/  generated MP3s
+assets/audio/fr/  generated MP3s         assets/audio/en/, assets/audio/ja/  more MP3s
+assets/flags/     language-button flags (quebec, uk, japan)
 scripts/fetch_images.py   scripts/generate_audio.py
 ```
 
