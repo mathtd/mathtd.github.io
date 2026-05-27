@@ -1,315 +1,132 @@
-body {
-  /*padding-top: 50px;*/
-
-   padding-top:0px;
-   margin-top: 25px;
-
+:root{
+  --ink:      #1b1b1b;   /* body text — softer than pure black */
+  --muted:    #5e5e5e;   /* co-authors, journal, meta */
+  --accent:   #B31B1B;   /* Cornell red */
+  --accent-d: #7d1414;   /* link hover — a deeper red */
+  --rule:     #e6e6e6;   /* abstract's vertical hairline */
+  --rule-sec: #dcdcdc;   /* section dividers — a touch darker */
+  --measure:  68ch;      /* max line length for readable abstracts */
 }
 
-/*Set width of container*/
-@media (min-width: 1200px) {
-  .container {
-    width: 1000px;
-  }
+*{ box-sizing:border-box; }
+
+/* Stop iOS/Android from auto-inflating body text in landscape (the cause of the
+   "big body, tiny header" mismatch); render fonts at their specified sizes. */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:#fff;
+  color:var(--ink);
+  /* Body / abstracts: a warm scholarly serif (system fonts, no download) */
+  font:400 17px/1.62 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
+.wrap{ max-width:880px; margin:0 auto; padding:40px 24px 80px; }
 
-.container {
-    padding-top: 0px;
-  	padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+/* Headings & meta in a clean sans, for contrast with the serif body */
+h1,h2,.role,.title,.meta,.contact-min,.btns,.course{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 
+a{ color:var(--accent); text-decoration:none; }
+a:hover{ color:var(--accent-d); text-decoration:underline; }
 
-.row {
-    padding-top: 20px;
+/* ---- Header ---- */
+header{ display:flex; gap:34px; align-items:stretch; padding-bottom:8px; }
+/* Photo auto-matches the height of the text column for a balanced rectangle;
+   object-position keeps the face in frame when the crop is tall. */
+header .photo{
+  width:255px; max-width:48%; align-self:stretch;
+  object-fit:cover; object-position:center 20%;
+  border-radius:4px;
+}
+.logo{ height:84px; margin-bottom:6px; }
+/* Fluid: shrinks to fit the two-column header in landscape, full size on desktop */
+h1{ font-size:clamp(1.35rem, 2.2vw + 0.3rem, 2rem); font-weight:700; margin:.1em 0 .15em; letter-spacing:-.01em; }
+.role{ color:var(--muted); font-size:1.05rem; margin:0 0 .15em; }
+
+/* CV / Research statement as buttons */
+.btns{ margin:.4rem 0 .9rem; }
+.btn-doc{
+  display:inline-block; font-size:.9rem;
+  border:1px solid var(--accent); color:var(--accent);
+  padding:.32rem .85rem; border-radius:5px; margin:0 .5rem .4rem 0;
+}
+.btn-doc:hover{ background:var(--accent); color:#fff; text-decoration:none; }
+
+/* Scholar/ORCID, email, address — muted */
+.contact-min{ list-style:none; margin:0; padding:0; font-size:.92rem; line-height:1.8; color:var(--muted); }
+
+/* ---- Section titles ---- */
+h2.section{
+  font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--muted);
+  margin:3rem 0 1.2rem;
+  padding-bottom:.5rem;
+  border-bottom:1px solid var(--rule-sec);
+  scroll-margin-top:1rem;
 }
 
-/*Styling for panel*/
+/* ---- Papers ---- */
+.paper{ margin:0 0 1.9rem; }
+.paper .title{ font-size:1.12rem; font-weight:600; margin:0 0 .25rem; line-height:1.35; }
+.meta{ font-size:.93rem; color:var(--muted); margin:.1rem 0; }
+.meta.journal strong{ color:var(--ink); }
+/* abstract + BibTeX toggles share this row with the paper/slides links; each
+   reveals its own block below when its toggle is open (see the two rules next). */
+.foot{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .9rem; font-size:.9rem; margin:.35rem 0 0; }
+.foot:has(details:not(.t-bibtex)[open]) ~ .abstract{ display:block; }  /* reveal the abstract below */
+.foot:has(.t-bibtex[open]) ~ .bibtex{ display:block; }                 /* reveal the BibTeX entry below */
 
-.panel-transparent .panel-heading{
-        background: rgba(0, 0, 0, 0)!important;
-        border: 0!important;
-        box-shadow: none;
-        /*font-size: 18px;*/
-        padding-left: 40px
-    }
-
-
-.panel-transparent .panel-body{
-    background: rgba(0, 0, 0, 0)!important;
-    border: 0!important;
-    box-shadow: none;
-    /*font-size: 14px;*/
-    padding-left: 40px
+/* Collapsible abstract — native, no JS */
+details{ display:inline; }
+summary{                                  /* styled to match the paper/slides links */
+  cursor:pointer;
+  font-size:.9rem; color:var(--accent); list-style:none;
+}
+summary::-webkit-details-marker{ display:none; }
+summary:hover{ text-decoration:underline; }
+.abstract{
+  display:none;                /* revealed by .foot:has(details:not(.t-bibtex)[open]) ~ .abstract */
+  max-width:var(--measure);
+  margin:.7rem 0 0;
+  padding:.1rem 0 .1rem 1.1rem;
+  border-left:2px solid var(--rule);
+  color:#333;
 }
 
-.panel-transparent{
-    /*padding-left: 20px*/
+/* Collapsible BibTeX entry — selectable text, no JS */
+.bibtex{
+  display:none;                /* revealed by .foot:has(.t-bibtex[open]) ~ .bibtex */
+  margin:.7rem 0 0;
+  padding:.6rem .9rem;
+  border-left:2px solid var(--rule);
+  background:#f7f7f7;
+  color:#333;
+  font:.82rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
 }
 
-.panel {
-    border: 0;
-    box-shadow: none;
-    /*font-size: 18px;*/
+/* ---- Teaching ---- */
+.course{ font-size:1.05rem; font-weight:600; margin:0 0 .5rem; }
+.course .level{ font-weight:400; color:var(--muted); }
+
+/* Portrait / narrow: stack the header into a single column. */
+@media (max-width:560px){
+  header{ flex-direction:column; gap:16px; }
+  header .photo{ width:210px; max-width:75%; height:auto; align-self:center; object-fit:fill; }
+  .logo{ height:auto; width:100%; max-width:380px; }  /* wordmark spans the column on phones */
+  .wrap{ padding:24px 18px 56px; }
+  h1{ font-size:1.4rem; }                             /* fits the long name on one line */
 }
 
-
-.table > thead > tr > th, .table > thead > tr > td {
-    border: 0;
-}
-
-
-a {
-	/*color: #2c75b4;*/
-    color: #B31B1B;
-  /*color: #004785; /*Wharton blue*/*/
-}
-
-a:hover {color: #222222;}
-
-/* Main Area */
-.logo {
-	height: 114px;
-    max-width: 100%
-}
-
-
-.photo {
-	/* height: 360px;
-	padding-bottom: 10px; */
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.photo-small {
-	height: 250px;
-	/* float: right; */
-  margin: auto;
-	margin-left: 20px;
-}
-
-.jumbotron ul {
-	list-style: none;
-	padding-left: 0px;
-	font-size: 16px;
-}
-
-
-
-
-.jumbotron h3 {
-	margin-top: 0px;
-}
-
-.jumbotron {
-	padding-top: 20px;
-	padding-bottom: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.cv {
-	font-size: 16px;
-}
-
-.email {
-	font-size: 16px;
-}
-
-.address {
-	font-size: 16px;
-}
-
-/* Organization */
-
-.anchor {
-    display: block;
-    position: relative;
-    top: -50px;
-    visibility: hidden;
-}
-
-.main_title {
-  /*padding-top: 5px;*/
-  padding-bottom: 5px;
-}
-
-.sub_title {
-  padding-top: 0px;
-  padding-bottom: 10px;
-  /*padding-left: 25px*/
-}
-
-
-
-/* Papers Area */
-
-.papers{
-	padding-left: 10px
-}
-
-.title {
-	display: inline-block;
-  margin: 0px;
-	padding-left: 20px
-}
-
-
-.after-title {
-	font-size: 15px;
-  padding-left: 40px;
-}
-
-.papers ul{
-	list-style: none;
-	padding-left: 0px;
-}
-
-.papers .co-authors {
-	font-size: 15px;
-	/*padding-bottom: 5px;*/
-  padding-left: 40px;
-}
-
-.papers .journal {
-	font-size: 15px;
-	/*padding-bottom: 5px;*/
-  padding-left: 40px;
-}
-
-
-.paper {
-	/*padding-bottom: 25px;*/
-}
-
-.discussion {
-	padding-bottom: 10px;
-}
-
-
-/* Teaching */
-
-.courses{
-	padding-left: 10px
-}
-
-.courses ul{
-	list-style: none;
-	padding-left: 0px;
-}
-
-/*.courses .title {
-	display: inline;
-	padding-left: 20px
-}*/
-
-.courses .subtitle {
-	font-size: 15px;
-	/*padding-bottom: 5px;*/
-  padding-left: 40px;
-}
-
-.course {
-	padding-bottom: 10px;
-}
-
-
-
-
-
-@media(max-width: 480px) {
-
-
-
-
-  h1 {
-    font-size: 16pt;
-  }
-  h2 {
-    font-size: 16pt;
-  }
-  h3 {
-    font-size: 14pt;
-  }
-  h4 {
-    font-size: 12pt;
-  }
-  body {
-    font-size: 12pt;
-  }
-  p {
-    font-size: 12pt!important;
-  }
-
-
-  .main_title {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-  .sub_title {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px
-  }
-
-  .papers{
-  	padding-left: 0px
-  }
-
-  .title {
-  	display: inline-block;
-    margin: 0px;
-  	padding-left: 0px
-  }
-
-
-  .after-title {
-    padding-left: 20px;
-  }
-
-  .papers ul{
-  	list-style: none;
-  	padding-left: 0px;
-  }
-
-  .papers .co-authors {
-  	/*padding-bottom: 5px;*/
-    padding-left: 20px;
-  }
-
-  .papers .journal {
-  	/*padding-bottom: 5px;*/
-    padding-left: 20px;
-  }
-
-
-
-
-
-  .courses{
-  	padding-left: 0px
-  }
-
-  .courses ul{
-  	list-style: none;
-  	padding-left: 0px;
-  }
-
-  /*.courses .title {
-  	display: inline;
-  	padding-left: 20px
-  }*/
-
-  .courses .subtitle {
-  	font-size: 15px;
-  	/*padding-bottom: 5px;*/
-    padding-left: 20px;
-  }
-
+/* Landscape phones / small tablets: keep two columns, but use a smaller photo
+   and tighter gap so the fluid name fits beside it without wrapping. */
+@media (min-width:561px) and (max-width:900px){
+  header{ gap:24px; }
+  header .photo{ width:180px; }
 }
