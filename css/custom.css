@@ -1,132 +1,99 @@
-:root{
-  --ink:      #1b1b1b;   /* body text — softer than pure black */
-  --muted:    #5e5e5e;   /* co-authors, journal, meta */
-  --accent:   #B31B1B;   /* Cornell red */
-  --accent-d: #7d1414;   /* link hover — a deeper red */
-  --rule:     #e6e6e6;   /* abstract's vertical hairline */
-  --rule-sec: #dcdcdc;   /* section dividers — a touch darker */
-  --measure:  68ch;      /* max line length for readable abstracts */
-}
+/* www.mathtd.info — 'Front-matter' design (promoted 2026-07-07).
+   Warm paper, all-serif, small-caps sections, bracketed links.
+   Same HTML/classes as before; this is a pure restyle. JS-free. */
 
 *{ box-sizing:border-box; }
-
-/* Stop iOS/Android from auto-inflating body text in landscape (the cause of the
-   "big body, tiny header" mismatch); render fonts at their specified sizes. */
 html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
-
+:root{
+  --paper:#fcfaf5;      /* warm paper background, from Option A */
+  --ink:#221f1a;        /* warm near-black */
+  --muted:#6b6357;      /* coauthors, meta */
+  --accent:#B31B1B;     /* Cornell red kept — it anchors the logo */
+  --accent-d:#7d1414;
+  --rule:#e8e2d4;       /* warm hairlines */
+  --rule-sec:#d9d2c0;   /* double rule + section rules */
+  --bracket:#b6ad99;    /* the [ ] around links */
+  --measure:66ch;
+}
 body{
-  margin:0;
-  background:#fff;
-  color:var(--ink);
-  /* Body / abstracts: a warm scholarly serif (system fonts, no download) */
-  font:400 17px/1.62 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  margin:0; background:var(--paper); color:var(--ink);
+  font:400 17.5px/1.62 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
-
-.wrap{ max-width:880px; margin:0 auto; padding:40px 24px 80px; }
-
-/* Headings & meta in a clean sans, for contrast with the serif body */
-h1,h2,.role,.title,.meta,.contact-min,.btns,.course{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-}
-
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ color:var(--accent-d); text-decoration:underline; }
+.wrap{ max-width:880px; margin:0 auto; padding:44px 24px 90px; }
 
-/* ---- Header ---- */
-header{ display:flex; gap:34px; align-items:stretch; padding-bottom:8px; }
-/* Photo auto-matches the height of the text column for a balanced rectangle;
-   object-position keeps the face in frame when the crop is tall. */
-header .photo{
-  width:255px; max-width:48%; align-self:stretch;
-  object-fit:cover; object-position:center 20%;
-  border-radius:4px;
-}
-.logo{ height:84px; margin-bottom:6px; }
-/* Fluid: shrinks to fit the two-column header in landscape, full size on desktop */
-h1{ font-size:clamp(1.35rem, 2.2vw + 0.3rem, 2rem); font-weight:700; margin:.1em 0 .15em; letter-spacing:-.01em; }
-.role{ color:var(--muted); font-size:1.05rem; margin:0 0 .15em; }
-
-/* CV / Research statement as buttons */
-.btns{ margin:.4rem 0 .9rem; }
+/* ---- Header: current layout, serif voice ---- */
+/* No header rule: the first small-caps section heading carries its own
+   full-width underline, so whitespace alone separates masthead from content. */
+header{ display:flex; gap:34px; align-items:stretch; padding-bottom:.4rem; }
+header .photo{ width:255px; max-width:48%; align-self:stretch;
+               object-fit:cover; object-position:center 20%; border-radius:4px; }
+.logo{ height:84px; margin-bottom:10px; }
+h1{ font-size:clamp(1.5rem, 2.4vw + .4rem, 2.05rem); font-weight:400;
+    letter-spacing:.005em; margin:.05em 0 .1em; }
+.role{ font-style:italic; color:var(--muted); font-size:1.08rem; margin:0 0 .2em; }
+.btns{ margin:.55rem 0 1rem; }
 .btn-doc{
-  display:inline-block; font-size:.9rem;
+  display:inline-block; font-size:.88rem; letter-spacing:.02em;
   border:1px solid var(--accent); color:var(--accent);
-  padding:.32rem .85rem; border-radius:5px; margin:0 .5rem .4rem 0;
+  padding:.3rem .85rem; border-radius:4px; margin:0 .5rem .4rem 0;
 }
 .btn-doc:hover{ background:var(--accent); color:#fff; text-decoration:none; }
-
-/* Scholar/ORCID, email, address — muted */
 .contact-min{ list-style:none; margin:0; padding:0; font-size:.92rem; line-height:1.8; color:var(--muted); }
 
-/* ---- Section titles ---- */
+/* ---- Sections: A's small caps, left-aligned, with the current full rule ---- */
 h2.section{
-  font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em;
-  color:var(--muted);
-  margin:3rem 0 1.2rem;
-  padding-bottom:.5rem;
+  font-weight:400; font-size:1.2rem;
+  font-variant:small-caps; letter-spacing:.13em;
+  color:var(--ink);
+  margin:3rem 0 1.5rem; padding-bottom:.45rem;
   border-bottom:1px solid var(--rule-sec);
   scroll-margin-top:1rem;
 }
 
 /* ---- Papers ---- */
-.paper{ margin:0 0 1.9rem; }
-.paper .title{ font-size:1.12rem; font-weight:600; margin:0 0 .25rem; line-height:1.35; }
-.meta{ font-size:.93rem; color:var(--muted); margin:.1rem 0; }
-.meta.journal strong{ color:var(--ink); }
-/* abstract + BibTeX toggles share this row with the paper/slides links; each
-   reveals its own block below when its toggle is open (see the two rules next). */
-.foot{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .9rem; font-size:.9rem; margin:.35rem 0 0; }
-.foot:has(details:not(.t-bibtex)[open]) ~ .abstract{ display:block; }  /* reveal the abstract below */
-.foot:has(.t-bibtex[open]) ~ .bibtex{ display:block; }                 /* reveal the BibTeX entry below */
-
-/* Collapsible abstract — native, no JS */
-details{ display:inline; }
-summary{                                  /* styled to match the paper/slides links */
-  cursor:pointer;
-  font-size:.9rem; color:var(--accent); list-style:none;
-}
-summary::-webkit-details-marker{ display:none; }
-summary:hover{ text-decoration:underline; }
+.paper{ margin:0 0 2rem; }
+.paper .title{ font-size:1.16rem; font-weight:600; margin:0 0 .2rem; line-height:1.38; }
+.meta{ font-style:italic; color:var(--muted); font-size:.97rem; margin:.08rem 0; }
+.meta.journal{ font-style:normal; font-size:.94rem; }
+.meta.journal strong{ color:var(--ink); font-weight:600; }
+.foot{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem 1.05rem; font-size:.9rem; margin:.4rem 0 0; }
+.foot a::before, .foot summary::before{ content:"["; color:var(--bracket); }
+.foot a::after,  .foot summary::after{ content:"]"; color:var(--bracket); }
+summary{ font-size:.9rem; color:var(--accent); }
 .abstract{
-  display:none;                /* revealed by .foot:has(details:not(.t-bibtex)[open]) ~ .abstract */
-  max-width:var(--measure);
-  margin:.7rem 0 0;
-  padding:.1rem 0 .1rem 1.1rem;
-  border-left:2px solid var(--rule);
-  color:#333;
+  max-width:var(--measure); margin:.7rem 0 0; padding:.1rem 0 .1rem 1.1rem;
+  border-left:2px solid var(--rule); color:#3b372e;
+  font-size:.97rem; text-align:justify; hyphens:auto; -webkit-hyphens:auto;
 }
-
-/* Collapsible BibTeX entry — selectable text, no JS */
 .bibtex{
-  display:none;                /* revealed by .foot:has(.t-bibtex[open]) ~ .bibtex */
-  margin:.7rem 0 0;
-  padding:.6rem .9rem;
-  border-left:2px solid var(--rule);
-  background:#f7f7f7;
-  color:#333;
-  font:.82rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
+  margin:.7rem 0 0; padding:.6rem .9rem;
+  background:#f4efe3; border:1px solid var(--rule); color:#3b372e;
+  font:.8rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
+.course{ font-size:1.06rem; margin:0 0 .55rem; }
+.course .level{ color:var(--muted); font-size:.92rem; }
 
-/* ---- Teaching ---- */
-.course{ font-size:1.05rem; font-weight:600; margin:0 0 .5rem; }
-.course .level{ font-weight:400; color:var(--muted); }
-
-/* Portrait / narrow: stack the header into a single column. */
 @media (max-width:560px){
   header{ flex-direction:column; gap:16px; }
-  header .photo{ width:210px; max-width:75%; height:auto; align-self:center; object-fit:fill; }
-  .logo{ height:auto; width:100%; max-width:380px; }  /* wordmark spans the column on phones */
+  header .photo{ width:210px; max-width:75%; height:auto; align-self:center; }
+  .logo{ height:auto; width:100%; max-width:380px; }
   .wrap{ padding:24px 18px 56px; }
-  h1{ font-size:1.4rem; }                             /* fits the long name on one line */
+  h1{ font-size:1.45rem; }
+  .abstract{ text-align:left; }
 }
-
-/* Landscape phones / small tablets: keep two columns, but use a smaller photo
-   and tighter gap so the fluid name fits beside it without wrapping. */
 @media (min-width:561px) and (max-width:900px){
   header{ gap:24px; }
   header .photo{ width:180px; }
 }
+
+details{ display:inline; }
+summary{ cursor:pointer; list-style:none; }
+summary::-webkit-details-marker{ display:none; }
+summary:hover{ text-decoration:underline; }
+.foot:has(details:not(.t-bibtex)[open]) ~ .abstract{ display:block; }
+.foot:has(.t-bibtex[open]) ~ .bibtex{ display:block; }
+.abstract{ display:none; }
+.bibtex{ display:none; white-space:pre-wrap; overflow-wrap:anywhere; }
